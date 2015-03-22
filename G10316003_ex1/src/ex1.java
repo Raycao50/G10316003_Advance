@@ -1,10 +1,11 @@
-//import java.util.ArrayList;
+//Greedy for TSP Problem
 
 public class ex1
 {
 
 	public static void main(String[] args)
 	{
+		int fin[]={0,0};
 		int ref[] = {0,0,0,0,0,0,0};
 		int ref2[] = {0,0,0,0,0,0,0};
 		int [][] node = { {9999,19,92,29,49,78,6},
@@ -113,7 +114,7 @@ public class ex1
 				}
 							mim_dis = 0 + temp_dis;					
 			}
-			System.out.printf("Path %d to %d : ",mim_i,mim_j);
+			System.out.printf("Path %d to %d : ",mim_i+1,mim_j+1);
 			System.out.println(mim_dis);
 			sum_dis += mim_dis;
 			
@@ -140,7 +141,26 @@ public class ex1
 			k++;
 			times++;
 		}
-		System.out.printf("mimum path:");
+		
+		int ss=0;
+			for(int g=0 ; g<7 ; g++)
+			{
+				if(ref[g]!=2)
+				{
+					fin[ss]=g;
+					ss++;
+				}	
+			}
+		
+		
+		i = fin[0];
+		j = fin[1];
+		sum_dis += node[i][j];
+		
+		System.out.printf("Path between head,%d & tail,%d: ",i,j);
+		System.out.println(node[i][j]);
+		
+		System.out.printf("The final mimum path with Greedy Algorithm is: ");
 		System.out.println(sum_dis);		
 	}
 }
