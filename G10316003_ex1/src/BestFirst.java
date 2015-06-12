@@ -23,14 +23,15 @@ public class BestFirst {
 			System.out.printf("Step :%d\n",Step);
 			int result = Compare(A,B);
 			System.out.printf("Current Wrong :%d\n",result);
+			
+			A=Moving(A,B);
+			result = Compare(A,B);
 			if(result==0){
 				System.out.printf("We got it");
 				break;
-			}else{
-				A=Moving(A,B);
-			    //result = Compare(A,B);
-				Step++;
 			}
+			Step++;
+			
 		}
 	}
 	
@@ -92,8 +93,8 @@ public class BestFirst {
 		
 		if(count>1){
 			int num = (int)(Math.random()*count) + 1;
-			System.out.printf("count is :%d\n",count);
-			System.out.printf("random is :%d\n",num);
+			//System.out.printf("count is :%d\n",count);
+			//System.out.printf("random is :%d\n",num);
 
 			for(int m=0;m<4;m++){
 				if(choose[m] == 1){
