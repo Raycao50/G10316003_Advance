@@ -298,16 +298,6 @@ public class problem4 {
 		
 		return gap_array; 
 	}
-	//所有列中找擁有零的數量最大值
-	static int maxZeroNumber(int[] array){
-		int max= 0;
-		for(int i=0;i<29;i++){
-			if(array[i]>max){
-				max = array[i];
-			}
-		}
-		return max;
-	}
 	//更新矩陣
 	static double[][] renew(double array[][],double start,double des){
 		for(int i=0;i<29;i++){
