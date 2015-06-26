@@ -56,17 +56,7 @@ public class problem4 {
 	       	double[] gapArray = new double[29];
 	       	System.out.printf("The current low bound is %.3f \n\n",bound); //目前的low bound
 	       	  
-	       	/*for(int i=0;i<29;i++){
-	       		System.out.printf("row %d got %d zero\n",i,Nzero_array[i]);
-	       	}*/
-	       	
-	       	//計算當前擁有此zero數的row的數量
-	        /*for(int m=0;m<29;m++){
-	        	if(Nzero_array[m] == maxZeroNumber(Nzero_array)){
-	        		ZeroRow.add(m);
-	        	}
-	        }*/
-	             		       	
+	          	
 	       	int count = 0; //計數器，用來表示跑了幾次城市
 	       	double path = 0; //所有走訪城市的總路徑
 	       	double temp = 0;//目前較佳的路徑
@@ -123,11 +113,13 @@ public class problem4 {
 		       				random_city = sure_city;
 		       				random_target = sure_target;
 		       			}
+		       			
 	       			ZeroRow.clear();
 	       			findZero.clear();
 	       			
 	       		}
-	       		
+	       			pass.add(random_city); //將已經被走訪的路徑加入pass內
+	       			
 	       			temp = city[random_city][random_target];	       			
 	       			System.out.printf("Step %d\n",count+1);
 	       			System.out.printf("with city%d to city%d is %.3f\n",random_city+1,random_target+1,temp);
