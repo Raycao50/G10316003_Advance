@@ -7,10 +7,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-public class problem1 {
+public class Greedy {
 
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+			
+		 long AverageTime =0; // 計算平均處理時間使用
+		 long StartTime = System.currentTimeMillis(); // 取出目前時間
 		
 	 	  String[] s2;
 	 	  String s3;  
@@ -42,16 +45,7 @@ public class problem1 {
 	       		}
 	       	}
 	       	
-	      //用來顯示矩陣間的個城市之間的距離
-	       	/*for(int i =0;i<29;i++){
-	       		for(int j=0;j<29;j++){
-	       			System.out.printf("%.3f   ",city[i][j]);
-	       		}
-	       		System.out.println();
-	       	}*/
-	       	
-	       	
-	       	//使用明宏之前分享的Greedy的方法，利用ArrayList來做
+	       	//使用ArrayList來做
 	       	int count = 0; //計數器，用來表示跑了幾次城市
 	       	double path = 0; //所有走訪城市的總路徑
 	       	int current_city = 9; //當前出發的城市，因為題目說要從第十個城市開始，矩陣是從０開始算，所以目前先設為９，之後會不斷被取代為新的城市以作為出發點
@@ -90,7 +84,11 @@ public class problem1 {
 				count++;//count+1 表示完成一次城市移動
 			}
 	       	
-	        System.out.printf("The final sum path is %.3f",path);
+	        System.out.printf("The final sum path is %.3f\n",path);
+	        
+	        long ProcessTime = System.currentTimeMillis() - StartTime; // 計算處理時間
+			AverageTime += ProcessTime; // 累積計算時間
+		    System.out.printf("The time cost is "+((double)AverageTime/1000)+"seconds");
 	}
 	
 	//distance函式 可以算出兩城市間的距離，透過第一個城市的x1 y1座標 及第二個城市的x2 y2座標

@@ -7,12 +7,14 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
-public class problem4 {
+public class BBS {
 	
 	static double bound=0;
 	
 	public static void main(String[] args) throws IOException {
 		// TODO Auto-generated method stub
+		  long AverageTime =0; // 計算平均處理時間使用
+		  long StartTime = System.currentTimeMillis(); // 取出目前時間
 		
 	 	  String[] s2;
 	 	  String s3;  
@@ -85,6 +87,10 @@ public class problem4 {
 	       			System.out.printf("Step %d\n",count+1);
 	       			System.out.printf("The final path is %.3f\n",bound);
 	       			
+	       			long ProcessTime = System.currentTimeMillis() - StartTime; // 計算處理時間
+	    			AverageTime += ProcessTime; // 累積計算時間
+	    		    System.out.printf("The time cost is "+((double)AverageTime/1000)+"seconds");
+	       			
 	       		}else{  //非最後一次
 		       			if(ZeroRow.size()>0){ //如果含有複數個0的城市數量大於0，將會先被選擇
 		       				RN = (int)(Math.random()*ZeroRow.size());
@@ -129,7 +135,7 @@ public class problem4 {
 
 		       		bound = bound + temp;
 		       		count++;		       		
-	       	}	       
+	       	}	    
 	}
 	
 	//distance函式 可以算出兩城市間的距離，透過第一個城市的x1 y1座標 及第二個城市的x2 y2座標
