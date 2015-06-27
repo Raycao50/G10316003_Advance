@@ -1,5 +1,5 @@
-//å•é¡Œå›› ï¼šåˆ©ç”¨Branch Bound StrategyåšTSP
-//å¾ä¹‹å‰çš„é–‹è®€æª”sampleæ”¹å¯« é€™é‚Šæœƒå­˜å–ä¸¦å‘¼å«city.javaå…§çš„å„åŸå¸‚x yè»¸åº§æ¨™
+//°İÃD¥| ¡G§Q¥ÎBranch Bound Strategy°µTSP
+//±q¤§«eªº¶}ÅªÀÉsample§ï¼g ³oÃä·|¦s¨ú¨Ã©I¥scity.java¤ºªº¦U«°¥«x y¶b®y¼Ğ
 
 
 import java.io.BufferedReader;
@@ -16,18 +16,18 @@ public class problem4 {
 		
 	 	  String[] s2;
 	 	  String s3;  
-	 	  City[] cities = new City[29];//ç”¨ä¾†å„²å­˜åŸå¸‚çš„åº§æ¨™
-	      double city[][] = new double[29][29]; //ç”¨ä¾†å„²å­˜åŸå¸‚åˆ°å¦ä¸€å€‹åŸå¸‚é–“çš„è·é›¢
+	 	  City[] cities = new City[29];//¥Î¨ÓÀx¦s«°¥«ªº®y¼Ğ
+	      double city[][] = new double[29][29]; //¥Î¨ÓÀx¦s«°¥«¨ì¥t¤@­Ó«°¥«¶¡ªº¶ZÂ÷
 	      double tempArray[][] = new double[29][29];
-	      ArrayList<Integer> node = new ArrayList<Integer>(); //nodeæœƒè¨˜éŒ„ä¹‹å¾Œé¸å–åˆ°çš„åŸå¸‚ï¼Œä¸¦ç”¨ä¾†åˆ¤æ–·æ˜¯å¦é‡è¤‡	      
-	      ArrayList<Integer> findZero = new ArrayList<Integer>(); 	//æ‰¾åˆ°è©²åˆ—é€šå¾€å…¶ä»–åŸå¸‚ç‚º0çš„è·¯å¾‘æ˜¯å“ªæ¢
-	      ArrayList<Integer> ZeroRow = new ArrayList<Integer>();//ç”¨ä¾†æ”¾ç•¶å‰æœƒé€²è¡Œéš¨æ©Ÿçš„row
-	      ArrayList<Integer> pass = new ArrayList<Integer>(); //ç¢ºå®šæœƒèµ°è¨ªçš„åŸå¸‚ä¾¿æ”¾é€²é€™è£¡é¢
+	      ArrayList<Integer> node = new ArrayList<Integer>(); //node·|°O¿ı¤§«á¿ï¨ú¨ìªº«°¥«¡A¨Ã¥Î¨Ó§PÂ_¬O§_­«½Æ	      
+	      ArrayList<Integer> findZero = new ArrayList<Integer>(); 	//§ä¨ì¸Ó¦C³q©¹¨ä¥L«°¥«¬°0ªº¸ô®|¬O­ş±ø
+	      ArrayList<Integer> ZeroRow = new ArrayList<Integer>();//¥Î¨Ó©ñ·í«e·|¶i¦æÀH¾÷ªºrow
+	      ArrayList<Integer> pass = new ArrayList<Integer>(); //½T©w·|¨«³Xªº«°¥««K©ñ¶i³o¸Ì­±
 	      
 	      FileReader fr2=new FileReader("bayg29.txt"); 
 	      BufferedReader sr2=new BufferedReader(fr2);
 	        
-	      	//é€™é‚Šå°‡æ‰€è®€åˆ°çš„åŸå¸‚åº§æ¨™è³‡æ–™å„²å­˜èµ·ä¾† ä½¿ç”¨ä¸Šæ¬¡çš„sampleéƒ¨åˆ†
+	      	//³oÃä±N©ÒÅª¨ìªº«°¥«®y¼Ğ¸ê®ÆÀx¦s°_¨Ó ¨Ï¥Î¤W¦¸ªºsample³¡¤À
 	       	for ( int i = 0; i < cities.length; i++){ 
 	            s3 = sr2.readLine();
 	            s2 = s3.split("\\s+");
@@ -37,36 +37,36 @@ public class problem4 {
 	            //System.out.println(cities[i].getY());
   			}
 
-	       	//å°‡åŸå¸‚é–“çš„è·é›¢åˆ©ç”¨distanceå‡½å¼æ±‚å¾— ä¸¦å„²å­˜åœ¨cityçŸ©é™£ç•¶ä¸­ï¼Œå¦‚æœæ˜¯åŸå¸‚åˆ°è‡ªå·±çš„è·é›¢ï¼Œå‰‡ç”¨ï¼™ï¼™ï¼™ï¼™å–ä»£
+	       	//±N«°¥«¶¡ªº¶ZÂ÷§Q¥Îdistance¨ç¦¡¨D±o ¨ÃÀx¦s¦bcity¯x°}·í¤¤¡A¦pªG¬O«°¥«¨ì¦Û¤vªº¶ZÂ÷¡A«h¥Î¢¸¢¸¢¸¢¸¨ú¥N
 	       	for(int i =0;i < cities.length ; i++ ){
 	       		for(int j =0;j < cities.length ; j++){
-	       			if(i==j){ //åˆ¤æ–·æ˜¯å¦å‡ºç™¼é»èˆ‡åˆ°é”é»ä¸€æ¨£ï¼Œä¸€æ¨£å‰‡è¨­ç‚ºï¼™ï¼™ï¼™ï¼™
-	       				city[i][j] = 9999; 
-	       			}else{ //å¦å‰‡å°‡å…©åŸå¸‚çš„åº§æ¨™å–å‡ºï¼Œä¸¦ä¸Ÿé€²distanceå‡½å¼ä¸­ï¼Œè¨ˆç®—å½¼æ­¤ä¹‹é–“çš„è·é›¢ï¼Œä¸¦å­˜é€²cityçŸ©é™£ç•¶ä¸­
+	       			if(i==j){ //§PÂ_¬O§_¥XµoÂI»P¨ì¹FÂI¤@¼Ë¡A¤@¼Ë«h³]¬°¢¸¢¸¢¸¢¸
+	       				city[i][j] = 99999; 
+	       			}else{ //§_«h±N¨â«°¥«ªº®y¼Ğ¨ú¥X¡A¨Ã¥á¶idistance¨ç¦¡¤¤¡A­pºâ©¼¦¹¤§¶¡ªº¶ZÂ÷¡A¨Ã¦s¶icity¯x°}·í¤¤
 	       			city[i][j] = distance(cities[i].getX(),cities[i].getY(),cities[j].getX(),cities[j].getY());    			
 	       			}
 	       		}
 	       	}
 	       	
-	       	tempArray = reduce(city); //åšreduce
+	       	tempArray = reduce(city); //°µreduce
 	       	//display(tempArray);
 	       	int[] Nzero_array = new int[29];
-	       	Nzero_array = check_zero(tempArray); //æª¢æŸ¥è¡Œåˆ—æ˜¯å¦éƒ½æœ‰ï¼
-	       	check_wrong(tempArray); //å› ç‚ºçµ¦çš„æ¥µé™å€¼æ˜¯99999ï¼Œæª¢æŸ¥æ˜¯å¦æœ‰è¶…é99999çš„åŸå¸‚è·é›¢
+	       	Nzero_array = check_zero(tempArray); //ÀË¬d¦æ¦C¬O§_³£¦³¢¯
+	       	check_wrong(tempArray); //¦]¬°µ¹ªº·¥­­­È¬O99999¡AÀË¬d¬O§_¦³¶W¹L99999ªº«°¥«¶ZÂ÷
 	       	double[] gapArray = new double[29];
-	       	System.out.printf("The current low bound is %.3f \n\n",bound); //ç›®å‰çš„low bound
+	       	System.out.printf("The initial low bound is %.3f \n\n",bound); //¥Ø«eªºlow bound
 	       	  
 	          	
-	       	int count = 0; //è¨ˆæ•¸å™¨ï¼Œç”¨ä¾†è¡¨ç¤ºè·‘äº†å¹¾æ¬¡åŸå¸‚
-	       	double path = 0; //æ‰€æœ‰èµ°è¨ªåŸå¸‚çš„ç¸½è·¯å¾‘
-	       	double temp = 0;//ç›®å‰è¼ƒä½³çš„è·¯å¾‘
-	       	int sure_city = 0; //ä¸æ˜¯ç”¨éš¨æ©Ÿé¸å‡ºä¾†çš„åŸå¸‚
-	       	int RN = 0 , random_city = 0; //ç”¨ä¾†éš¨æ©Ÿå‡ºç™¼çš„åŸå¸‚èˆ‡éš¨æ©Ÿæ•¸
-	       	int RN2 = 0, random_target = 0; //ç”¨ä¾†éš¨æ©Ÿç›®æ¨™çš„ç¨‹å¼èˆ‡éš¨æ©Ÿæ•¸
+	       	int count = 0; //­p¼Æ¾¹¡A¥Î¨Óªí¥Ü¶]¤F´X¦¸«°¥«
+	       	double path = 0; //©Ò¦³¨«³X«°¥«ªºÁ`¸ô®|
+	       	double temp = 0;//¥Ø«e¸û¨Îªº¸ô®|
+	       	int sure_city = 0; //¤£¬O¥ÎÀH¾÷¿ï¥X¨Óªº«°¥«
+	       	int RN = 0 , random_city = 0; //¥Î¨ÓÀH¾÷¥Xµoªº«°¥«»PÀH¾÷¼Æ
+	       	int RN2 = 0, random_target = 0; //¥Î¨ÓÀH¾÷¥Ø¼Ğªºµ{¦¡»PÀH¾÷¼Æ
 	       		       	
 	       	while(count < city.length){
 	       		double min_gap = 99999;
-	       		gapArray = gap(tempArray); //æŠ€ç®—æ’é™¤0ä»¥å¤–çš„ç¬¬äºŒæ•¸
+	       		gapArray = gap(tempArray); //§Şºâ±Æ°£0¥H¥~ªº²Ä¤G¼Æ
 		       	
 	       		for(int aa=0;aa<29;aa++){  //
 		       		if(gapArray[aa]==0){
@@ -81,14 +81,12 @@ public class problem4 {
 	       			}
 	       		}
 	       		
-	       		if(count == city.length-1){ //æœ€å¾Œä¸€æ¬¡
+	       		if(count == city.length-1){ //³Ì«á¤@¦¸
+	       			System.out.printf("Step %d\n",count+1);
+	       			System.out.printf("The final path is %.3f\n",bound);
 	       			
-	       			
-	       			
-	       		}else{  //éæœ€å¾Œä¸€æ¬¡
-	       			
-	       			
-		       			if(ZeroRow.size()>0){ //å¦‚æœå«æœ‰è¤‡æ•¸å€‹0çš„åŸå¸‚æ•¸é‡å¤§æ–¼0ï¼Œå°‡æœƒå…ˆè¢«é¸æ“‡
+	       		}else{  //«D³Ì«á¤@¦¸
+		       			if(ZeroRow.size()>0){ //¦pªG§t¦³½Æ¼Æ­Ó0ªº«°¥«¼Æ¶q¤j©ó0¡A±N·|¥ı³Q¿ï¾Ü
 		       				RN = (int)(Math.random()*ZeroRow.size());
 			       			random_city = ZeroRow.get(RN);
 			       			
@@ -100,7 +98,7 @@ public class problem4 {
 			       			
 			       			RN2 = (int)(Math.random()*findZero.size());
 			       			random_target = findZero.get(RN2);
-		       			}else{ //è‹¥æ²’æœ‰è¤‡æ•¸å€‹0çš„åŸå¸‚æ•¸é‡å¤§æ–¼0ï¼Œå°‡æœƒé¸æ“‡gapæœ€å°çš„
+		       			}else{ //­Y¨S¦³½Æ¼Æ­Ó0ªº«°¥«¼Æ¶q¤j©ó0¡A±N·|¿ï¾Ügap³Ì¤pªº
 		       				double min = 99999;
 		       				int sure_target = 0;
 		       				for(int i=0;i<29;i++){
@@ -112,33 +110,29 @@ public class problem4 {
 		       				
 		       				random_city = sure_city;
 		       				random_target = sure_target;
-		       			}
-		       			
+		       			}		       		
 	       			ZeroRow.clear();
 	       			findZero.clear();
 	       			
-	       		}
-	       			pass.add(random_city); //å°‡å·²ç¶“è¢«èµ°è¨ªçš„è·¯å¾‘åŠ å…¥passå…§
-	       			
-	       			temp = city[random_city][random_target];	       			
+	       			temp = tempArray[random_city][random_target];	       			
 	       			System.out.printf("Step %d\n",count+1);
+	    	       	System.out.printf("The current low bound is %.3f \n",bound); //¥Ø«eªºlow bound
 	       			System.out.printf("with city%d to city%d is %.3f\n",random_city+1,random_target+1,temp);
 	       			System.out.printf("without city%d to city%d is %.3f\n",random_city+1,random_target+1,gapArray[random_city]);
 	       			System.out.printf("Current bound is %.3f + %.3f = %.3f\n",bound,temp,bound+temp);
-	       			System.out.println();
+	       			System.out.println();				       			
 	       			
-	       			tempArray = renew(tempArray,random_city,random_target); //é‡æ–°è®Šæ›´é™£åˆ—
+	       		}
+	       			pass.add(random_city); //±N¤w¸g³Q¨«³Xªº¸ô®|¥[¤Jpass¤º
+	       			tempArray = renew(tempArray,random_city,random_target); //­«·sÅÜ§ó°}¦C
 	       			tempArray = reduce(tempArray);
 
 		       		bound = bound + temp;
-		       		count++;
-		       		
-	       	}
-	
-	       
+		       		count++;		       		
+	       	}	       
 	}
 	
-	//distanceå‡½å¼ å¯ä»¥ç®—å‡ºå…©åŸå¸‚é–“çš„è·é›¢ï¼Œé€éç¬¬ä¸€å€‹åŸå¸‚çš„x1 y1åº§æ¨™ åŠç¬¬äºŒå€‹åŸå¸‚çš„x2 y2åº§æ¨™
+	//distance¨ç¦¡ ¥i¥Hºâ¥X¨â«°¥«¶¡ªº¶ZÂ÷¡A³z¹L²Ä¤@­Ó«°¥«ªºx1 y1®y¼Ğ ¤Î²Ä¤G­Ó«°¥«ªºx2 y2®y¼Ğ
 	static double distance(int x1,int y1,int x2,int y2) 
 	{	double dis = 0;
 		double x,y;
@@ -147,7 +141,7 @@ public class problem4 {
 		dis = Math.sqrt(x+y);
 		return dis; 
 	}
-	//ç”¨ä¾†é¡¯ç¤ºäºŒç¶­çŸ©é™£
+	//¥Î¨ÓÅã¥Ü¤Gºû¯x°}
 	static void display(double array[][]){
 		for(int i=0;i<29;i++){
 			for(int j =0;j<29;j++){
@@ -157,42 +151,57 @@ public class problem4 {
 		}
 	}
 	
-	//ç”¨ä¾†åšçŸ©é™£çš„reduceï¼Œä½¿å¾—æ¯ä¸€åˆ— æ¯ä¸€è¡Œ éƒ½åªå°‘æœƒæœ‰ä¸€å€‹ï¼
+	//¥Î¨Ó°µ¯x°}ªºreduce¡A¨Ï±o¨C¤@¦C ¨C¤@¦æ ³£¥u¤Ö·|¦³¤@­Ó¢¯
 	static double[][] reduce(double array[][]){
 		//double[][] temp = new double[29][29];
-		double minR;//æ‰¾åˆ°ç›®å‰åŒä¸€åˆ—çš„æœ€å°å€¼
-		double minC;//æ‰¾åˆ°ç›®å‰åŒä¸€è¡Œçš„æœ€å°å€¼
-		
-		//ä½œå„åˆ—çš„reduce
+		double minR;//§ä¨ì¥Ø«e¦P¤@¦Cªº³Ì¤p­È
+		double minC;//§ä¨ì¥Ø«e¦P¤@¦æªº³Ì¤p­È
+		int count = 1;
+		//§@¦U¦Cªºreduce
 		for(int i = 0;i<29;i++){
-			//æ‰¾å‡ºè©²åˆ—çš„æœ€å°å€¼
-			minR = 9999;
+			//§ä¥X¸Ó¦Cªº³Ì¤p­È
+			minR = 99999;
 			for(int j=0;j<29;j++){
 				if(array[i][j]<minR){
 					minR = array[i][j];
 				}
 			}
-			//è©²åˆ—éƒ½æ¸›æ‰å…¶æœ€å°å€¼
+			//¸Ó¦C³£´î±¼¨ä³Ì¤p­È
+			if(minR > 10000){
+				minR = 0;
+			}
+			
 			for(int j=0;j<29;j++){
 				array[i][j] -= minR;
 			}
-			bound += minR; //å°‡å„åˆ—éƒ½æ¸›å»çš„æœ€å°å€¼åŠ é€²boundä¸­ 
+			
+			
+			bound += minR; //±N¦U¦C³£´î¥hªº³Ì¤p­È¥[¶ibound¤¤ 
+			//System.out.printf("The minR is %.3f\n",minR); //¥Î¨ÓÅã¥Ü¥Ø«eªº­n¦A´î±¼ªºlow bound
+
 		}
 		
-		//åšå„è¡Œçš„reduce
+		//°µ¦U¦æªºreduce
 		for(int i=0;i<29;i++){
-			//æ‰¾å‡ºè©²è¡Œçš„æœ€å°å€¼
-			minC = 9999;
+			//§ä¥X¸Ó¦æªº³Ì¤p­È
+			minC = 99999;
 			for(int j=0;j<29;j++){
 				if(array[j][i]<minC){
 					minC = array[j][i];
 				}
 			}
-			//è©²è¡Œéƒ½æ¸›æ‰å…¶æœ€å°å€¼
+			//¸Ó¦æ³£´î±¼¨ä³Ì¤p­È
+			if(minC > 10000){
+				minC = 0;
+			}
+			
 			for(int j=0;j<29;j++){
 				array[j][i] -= minC;
 			}
-			bound += minC;  //å°‡å„è¡Œéƒ½æ¸›å»çš„æœ€å°å€¼éƒ½åŠ é€²boundä¸­
+			
+			bound += minC;  //±N¦U¦æ³£´î¥hªº³Ì¤p­È³£¥[¶ibound¤¤
+			//System.out.printf("The minC is %.3f\n",minC); //¥Î¨ÓÅã¥Ü¥Ø«eªº­n´î±¼ªºlow bound
+
 		}
 		
 		for(int i=0;i<29;i++){
@@ -203,16 +212,16 @@ public class problem4 {
 			}
 		}
 		
-		return array; //å›å‚³reduceå¾Œçš„é™£åˆ—
+		return array; //¦^¶Çreduce«áªº°}¦C
 	}
 	
-	//ç”¨ä¾†ç¢ºèªæ¯è¡Œæ¯åˆ—çš„é›¶çš„å€‹æ•¸ï¼Œä¸¦å›å‚³æ¯åˆ—é›¶å€‹æ•¸è‡³é™£åˆ—
+	//¥Î¨Ó½T»{¨C¦æ¨C¦Cªº¹sªº­Ó¼Æ¡A¨Ã¦^¶Ç¨C¦C¹s­Ó¼Æ¦Ü°}¦C
 	static int[] check_zero(double array[][]){
 		//int[] temp = new int[29];
 		int[] check_arrayR = new int[29]; 
 		int[] check_arrayC = new int[29];
 		
-		//åˆ—çš„éƒ¨åˆ†
+		//¦Cªº³¡¤À
 		for(int i=0;i<29;i++){
 			int check = 0;
 			for(int j=0;j<29;j++){
@@ -228,7 +237,7 @@ public class problem4 {
 			}
 		}
 		
-		//è¡Œçš„éƒ¨åˆ†
+		//¦æªº³¡¤À
 		for(int i=0;i<29;i++){
 			int check = 0;
 			for(int j=0;j<29;j++){
@@ -247,7 +256,7 @@ public class problem4 {
 		return check_arrayR;
 	}
 	
-	//ç¢ºèªæ˜¯å¦æœ‰è¶…é99999çš„æ•¸
+	//½T»{¬O§_¦³¶W¹L99999ªº¼Æ
 	static void check_wrong(double array[][]){
 		for(int i=0;i<29;i++){
 			for(int j=0;j<29;j++){
@@ -258,13 +267,13 @@ public class problem4 {
 		}
 	}
 	
-	//æ‰¾æ¯åˆ—ä¸­ç¬¬äºŒå°çš„æ•¸ï¼Œä¾†ç¢ºèªå…ˆå¾å“ªä¸€è¡Œé–‹å§‹åš
+	//§ä¨C¦C¤¤²Ä¤G¤pªº¼Æ¡A¨Ó½T»{¥ı±q­ş¤@¦æ¶}©l°µ
 	static double[] gap(double array[][]){
 		double[] gap_array = new double[29];
 		
 		for(int i=0;i<29;i++){
 			int zero_number=0;
-			double small = 9999;
+			double small = 99999;
 			for(int j=0;j<29;j++){
 				if(array[i][j]==0){
 					zero_number++;
@@ -283,14 +292,14 @@ public class problem4 {
 				gap_array[i] = small;
 			}			
 		}
-		//é¡¯ç¤ºæ¯å€‹åˆ—çš„gap
+		//Åã¥Ü¨C­Ó¦Cªºgap
 		/*for(int n=0;n<29;n++){ 
 			System.out.printf("%d is %.3f\n",n+1,gap_array[n]);
 		}*/
 		
 		return gap_array; 
 	}
-	//æ›´æ–°çŸ©é™£
+	//§ó·s¯x°}
 	static double[][] renew(double array[][],double start,double des){
 		for(int i=0;i<29;i++){
 			array[(int)start][i] = 99999;
@@ -306,6 +315,13 @@ public class problem4 {
 				if(i==j){
 					array[i][j] = 99999;
 				}
+			}
+		}
+		
+		for(int i=0;i<29;i++){
+			for(int j=0;j<29;j++){
+				if(array[i][j]>10000)
+					array[i][j] = 99999;
 			}
 		}
 		
